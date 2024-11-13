@@ -32,13 +32,6 @@ div {
     margin: 10px;
     text-align: center;
 }
-div:hover {
-    border-color: red; 
-}
-a:hover {
-    border-color: red;
-}
-
-div:hover {
+div.hover {
     border-color: red; 
 }
