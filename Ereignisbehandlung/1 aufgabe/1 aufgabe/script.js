@@ -7,7 +7,7 @@ function hoverAn(e) {
 function hoverAb (e) { 
     e.target.parentElement.style.color = "white";
     e.target.parentElement.classList.remove("hover");
-    
+        
 }
 function initialize() {
     var schalter = ["antrieb", "holodeck", "hitzeschild", "transporter"];
