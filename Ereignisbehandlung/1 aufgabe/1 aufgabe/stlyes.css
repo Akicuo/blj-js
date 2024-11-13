@@ -1,0 +1,43 @@
+body {
+    
+    background-color: black;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+h2 {
+    text-align: center;
+}
+
+div {
+
+    display: inline-block;
+    border-color: white;
+    border-style: solid;
+    border-radius: 15px;
+    width: 130px;
+    padding-bottom: 25px;
+    margin: 10px;
+}
+div:hover {
+    border-color: red; 
+}
+a:hover {
+    border-color: red;
+}
+
+div:hover {
+    border-color: red; 
+}
