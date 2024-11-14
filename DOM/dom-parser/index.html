@@ -19,6 +19,18 @@
    <div id="placeholder"></div>
 
    <script>
+      function changeitup(){
+            // die aufgabe DOM-Baum modifizieren
+    var list = document.getElementById("menu").getElementsByTagName("li");
+    var translations = ["Startseite", "Produkte", "Über", "Kontakt"];
+
+    
+    for (var i = 0; i < list.length; i++) {
+        var link = list[i].getElementsByTagName("a")[0];
+        link.textContent = translations[i]; 
+    }
+}
+      // changeitup();
       var dom = parseNode(document.getElementById("menu"));
       document.getElementById("placeholder").innerHTML = dom;
    </script>
