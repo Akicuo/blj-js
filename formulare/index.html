@@ -1,0 +1,28 @@
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Formular</title>
+   <script>
+     function validieren(e) {
+         //verhindern, dass Formular abgeschickt wird.
+         e.preventDefault(); 
+         var lieblingsEssen = document.forms[0].elements["essen"].value;
+         if (lieblingsEssen.length > 0) {
+            //Formular abschicken.
+            document.forms[0].submit(); 
+         } else {
+            alert("Eingabe fehlt.");
+         }
+      }
+   </script>
+</head>
+<body>
+   <form name="formular" action="skript.php" method="post">
+      Dein Lieblingsessen: <input type="text" name="essen" />
+      <input type="submit" value="Absenden" />
+   </form>
+   <script>
+      document.forms[0].addEventListener("submit", validieren);
+   </script>
+</body>
+</htm

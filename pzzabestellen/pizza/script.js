@@ -10,7 +10,7 @@ function add() {
 
     if (ingredients.selectedIndex > -1 ) {
         document.getElementById("choice").appendChild(ingredients.options[ingredients.selectedIndex]);
-        ingredients.removeChild(ingredients.options[ingredients.selectedIndex]);
+        // ingredients.removeChild(ingredients.options[ingredients.selectedIndex]);
     }
 }
 
@@ -19,7 +19,7 @@ function remove() {
     if (choice.selectedIndex > -1 ) {
         
         document.getElementById("ingredients").appendChild(choice.options[choice.selectedIndex]);
-        choice.removeChild(choice.options[choice.selectedIndex]);
+        // choice.removeChild(choice.options[choice.selectedIndex]);
         //todo: ausgewählte Zutat von der rechten in die linke Listbox verschieben
     }
 }
