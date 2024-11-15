@@ -6,15 +6,107 @@
     <title>Document</title>
     <script>
         function placeExists(){
-            var place = document.getElementById("place").value;
-        }
+            var placeInput = document.getElementById("place");
+            if (placeInput) {
+                var place = placeInput.value.trim();
+                if (place) {
+                    fetch(`http://transport.opendata.ch/v1/stationboard?station=${place}`)
+                        .then(res => res.json())
+                        .then(data => {
+                    document.querySelector(".placeheader").textContent = data.station.name;
+                    document.getElementsByClassName("cn-section")[0].classList.remove("hide");
+                    listofstation = data.stationboard;
+                    var tableBody = document.querySelector(".tble");
+                    tableBody.innerHTML = "";
+                    var num = 0;
+                    listofstation.forEach(station => {
+                        
+                        var row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${new Date(station.passList[0].departure).toLocaleTimeString()}
+                            <td>${station.category}${station.number}</td>
+                            <td>${station.to}</td>
+                            <td>${station.passList[0].platform}</td>
+                        `;
+                        // tableBody.appendChild(row);
+                        if (num > 20) {tableBody.appendChild(row);} else {num += 1}
+
+                    }); 
+                        })
+                        .catch(error => console.error('Error:', error));
+                } else {
+                    console.log('Please enter a place');
+                }
+            } else {
+                console.log('Place input element not found');
+            }
+        };
+        document.addEventListener("DOMContentLoaded", () => {
+            var searchButton = document.getElementById("searchconnections");
+            if (searchButton) {
+                searchButton.addEventListener("click", placeExists);
+            }
+        });
     </script>
+    <style>
+        th, td {
+  padding: 5px;
+  padding-right: 15px;
+}
+        #searchconnections{
+            width: 175px;
+            height: 30px;
+            background-color: red;
+            color: white;
+            border-color: white;
+        }
+        .fg {
+            display: flex;
+        }
+        input {
+            height: 25px;
+            width: 200px;
+            margin-right: 5%;
+            border-color: aliceblue;
+
+        }
+        .cn-fg1 {
+            display: flex;
+            flex-direction: row;
+        }
+        .abfahrtxt {
+            margin-right: 20px;
+            font-size: 10;
+        }
+        .departxt {
+        }
+        .lang-translations {
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .cn-section.hide{
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
     <h1><strong>Abfahrtstafel</strong></h1>
     <div class="fg">
+        <input id="place" type="text">
+        <button id="searchconnections" onclick="placeExists()">Verbindungen suchen</button>
+        <br><br>
 
     </div>
+    <div class="cn-section">
+        <h2 class="placeheader">Place</h2>
+        <div class="cn-fg1">
+            <p><strong>Abfahrt<span class="lang-translations">Depàrt - Partenza - Departure</span></strong></p>
+        </div>
+        <div class="tble"></div>
+    </div>
+    <script>
+        document.getElementsByClassName("cn-section")[0].classList.add("hide")
+    </script>
     
 </body>
 </html>
