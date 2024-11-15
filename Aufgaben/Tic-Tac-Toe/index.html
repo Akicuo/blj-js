@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <style>
-
         .tic-tac-toe {
             display: grid;
             grid-template-columns: repeat(3, 100px);
@@ -74,19 +73,19 @@
             [2, 4, 6]
         ];
 
-        for (var i = 0; i < buttons.length; i++) {
-            var button = buttons[i];
+        buttons.forEach((button, index) => {
             button.addEventListener("click", () => {
                 if (!gameOver && button.textContent === "") {
                     button.textContent = currentPlayer;
                     button.classList.add(currentPlayer === "X" ? "red" : "grey");
+                    
                     moves++;
                     checkWinner();
                     checkDraw();
                     currentPlayer = currentPlayer === "X" ? "O" : "X";
                 }
             });
-}
+        });
 
         function checkWinner() {
             for (var combination of winningCombinations) {
@@ -103,7 +102,7 @@
 
         function checkDraw() {
             if (moves === 9 && !gameOver) {
-                alert("It\"s a draw!");
+                alert("It's a draw!");
                 resetGame();
             }
         }
